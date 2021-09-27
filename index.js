@@ -20,27 +20,81 @@ days = {
 
 }
 
+
 vk.updates.start();
 
 vk.updates.on('message', (context, next) => {
+
 
 if (context.text == null || context.isGroup == true || context.text == 'undefined') return
 
 if (Object.keys(days).indexOf(context.text.toLowerCase()) >= 0) {
 
       context.send({
-
-        message: days[context.text],
-
         keyboard: Keyboard.builder()
 
             .textButton({
 
-                label: 'Вся неделя',
+                label: 'Понедельник',
 
                 payload: {
 
-                    command: 'Вся неделя'
+                    command: 'Понедельник'
+
+                }
+
+            })
+
+            .inline()
+
+            .textButton({
+
+                label: 'Вторник',
+
+                payload: {
+
+                    command: 'Вторник'
+
+                }
+
+            })
+
+            .inline()
+            .textButton({
+
+                label: 'Среда',
+
+                payload: {
+
+                    command: 'Среда'
+
+                }
+
+            })
+
+            .inline()
+
+            .textButton({
+
+                label: 'Четверг',
+
+                payload: {
+
+                    command: 'Четверг'
+
+                }
+
+            })
+
+            .inline()
+
+            .textButton({
+
+                label: 'Пятница',
+
+                payload: {
+
+                    command: 'Пятница'
 
                 }
 
@@ -51,9 +105,27 @@ if (Object.keys(days).indexOf(context.text.toLowerCase()) >= 0) {
     })
 
     }
- if (context.text.toLowerCase().includes('вся неделя')){
+ if (context.text.toLocaleLowerCase().includes('понедельник')){
 
-context.send(`Расписание на всю неделю:\n \nПонедельник:\n${days["понедельник"]}\n \nВторник:\n${days["вторник"]}\n \nСреда:\n${days["среда"]}\n \nЧетверг:\n${days["четверг"]}\n \nПятница:\n${days["пятница"]}`)
+     context.send(`${days["понедельник"]}`)
+ }
 
-}
+    if (context.text.toLocaleLowerCase().includes('вторник')){
+
+        context.send(`${days["вторник"]}`)
+    }
+
+    if (context.text.toLocaleLowerCase().includes('среда')){
+
+        context.send(`${days["среда"]}`)
+    }
+    if (context.text.toLocaleLowerCase().includes('четверг')){
+
+        context.send(`${days["четверг"]}`)
+    }
+    if (context.text.toLocaleLowerCase().includes('пятница')){
+
+        context.send(`${days["пятница"]}`)
+    }
+
 })
